@@ -6,12 +6,12 @@ const AboutPage = () => {
       <h2 className="text-2xl font-bold mb-4">Our Team</h2>
       <div className="team-members flex justify-center space-x-4">
         <div className="member bg-white p-4 rounded shadow w-48">
-          <h3 className="font-semibold">John Doe</h3>
-          <p className="text-gray-600">Robotics Engineer</p>
+          <h3 className="font-semibold">Ziead Hassan</h3>
+          <p className="text-gray-600">Computer Engineer</p>
         </div>
         <div className="member bg-white p-4 rounded shadow w-48">
-          <h3 className="font-semibold">Jane Smith</h3>
-          <p className="text-gray-600">AI Specialist</p>
+          <h3 className="font-semibold">Salahaldeen khail</h3>
+          <p className="text-gray-600">Computer Engineer</p>
         </div>
       </div>
     </div>

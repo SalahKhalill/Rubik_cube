@@ -1,24 +1,38 @@
 import React from 'react';
+import './RubikCubeLoader.css'; // Ensure you copy the styles into this CSS file
 
 const RubikCube = () => {
-  const colors = ['red', 'green', 'blue', 'yellow', 'orange', 'white'];
-
   return (
-    <div className="cube-container w-full h-64 flex justify-center items-center">
-      <div className="cube relative w-40 h-40">
-        {[...Array(6)].map((_, faceIndex) => (
-          <div 
-            key={faceIndex} 
-            className="absolute w-40 h-40 border-2 border-black"
-            style={{ 
-              backgroundColor: colors[faceIndex],
-              transform: `rotate${faceIndex % 2 === 0 ? 'X' : 'Y'}(${faceIndex * 90}deg) translateZ(80px)`
-            }}
-          />
+    <div className="my-loader">
+      <div className="rubiks-cube">
+        {['front', 'back', 'left', 'right', 'top', 'bottom'].map((face) => (
+          <div key={face} className={`face ${face}`}>
+            {Array.from({ length: 9 }).map((_, index) => (
+              <div
+                key={index}
+                className="cube"
+                style={{
+                  background: getCubeColor(face, index),
+                }}
+              ></div>
+            ))}
+          </div>
         ))}
       </div>
     </div>
   );
+};
+
+const getCubeColor = (face, index) => {
+  const colors = {
+    front: ['#ff3d00', '#ffeb3b', '#4caf50', '#2196f3', '#ffffff', '#ffeb3b', '#4caf50', '#2196f3', '#ff3d00'],
+    back: ['#4caf50', '#ff3d00', '#ffeb3b', '#2196f3', '#ffffff', '#ff3d00', '#ffeb3b', '#4caf50', '#2196f3'],
+    left: ['#ffeb3b', '#4caf50', '#2196f3', '#ff3d00', '#ffffff', '#4caf50', '#2196f3', '#ffeb3b', '#ff3d00'],
+    right: ['#4caf50', '#ff3d00', '#ffeb3b', '#2196f3', '#ffffff', '#ff3d00', '#ffeb3b', '#4caf50', '#2196f3'],
+    top: ['#2196f3', '#ffeb3b', '#ff3d00', '#4caf50', '#ffffff', '#ffeb3b', '#ff3d00', '#4caf50', '#2196f3'],
+    bottom: ['#ffffff', '#4caf50', '#2196f3', '#ff3d00', '#ffeb3b', '#4caf50', '#2196f3', '#ffffff', '#ff3d00'],
+  };
+  return colors[face][index];
 };
 
 export default RubikCube;

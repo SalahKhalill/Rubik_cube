@@ -1,7 +1,7 @@
 import React from 'react';
 import './RubikCubeLoader.css'; // Ensure you copy the styles into this CSS file
 
-const RubikCube = () => {
+const RubikCubeLoader = () => {
   return (
     <div className="my-loader">
       <div className="rubiks-cube">
@@ -35,4 +35,4 @@ const getCubeColor = (face, index) => {
   return colors[face][index];
 };
 
-export default RubikCube;
+export default RubikCubeLoader;

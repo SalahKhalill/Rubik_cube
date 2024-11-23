@@ -1,64 +1,99 @@
-.my-loader {
-    width: 200px;
-    height: 200px;
-    perspective: 1000px;
-    margin: 100px auto;
+.body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* min-height: 100vh; */
+  margin: 0;
+  background: #f0f0f0;
 }
 
-.rubiks-cube {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transform-style: preserve-3d;
-    animation: my-rotateCube 5s infinite linear;
+.scene {
+  width: 200px;
+  height: 200px;
+  perspective: 600px;
+  margin: 100px auto;
 }
 
-
-.my-loader .face {
-    position: absolute;
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    height: 100%;
+.cube {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: rotate 20s infinite linear;
 }
 
-.my-loader .face.front {
-    transform: translateZ(100px);
+.cube:hover {
+  animation-play-state: paused;
 }
 
-.my-loader .face.back {
-    transform: rotateY(180deg) translateZ(100px);
+.face {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border: 2px solid #000;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 2px;
+  background: #000;
 }
 
-.my-loader .face.left {
-    transform: rotateY(-90deg) translateZ(100px);
+.cube .front-square {
+  background: red;
+}
+.cube .back-square {
+  background: orange;
+}
+.cube .right-square {
+  background: blue;
+}
+.cube .left-square {
+  background: green;
+}
+.cube .top-square {
+  background: white;
+}
+.cube .bottom-square {
+  background: yellow;
 }
 
-.my-loader .face.right {
-    transform: rotateY(90deg) translateZ(100px);
+.front {
+  transform: translateZ(100px);
+}
+.back {
+  transform: translateZ(-100px) rotateY(180deg);
+}
+.right {
+  transform: translateX(100px) rotateY(90deg);
+}
+.left {
+  transform: translateX(-100px) rotateY(-90deg);
+}
+.top {
+  transform: translateY(-100px) rotateX(90deg);
+}
+.bottom {
+  transform: translateY(100px) rotateX(-90deg);
 }
 
-.my-loader .face.top {
-    transform: rotateX(90deg) translateZ(100px);
+/* Rotation Animation */
+@keyframes rotate {
+  from {
+    transform: rotateX(0) rotateY(0) rotateZ(0);
+  }
+  to {
+    transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+  }
 }
 
-.my-loader .face.bottom {
-    transform: rotateX(-90deg) translateZ(100px);
+.square {
+  width: 100%;
+  height: 100%;
+  transition: background-color 0.3s, transform 0.3s ease;
 }
 
-.my-loader .cube {
-    width: calc(100% / 3);
-    height: calc(100% / 3);
-    box-sizing: border-box;
-    border: 1px solid #000;
-}
-
-@keyframes my-rotateCube {
-    0% {
-        transform: rotateX(0deg) rotateY(0deg);
-    }
-
-    100% {
-        transform: rotateX(360deg) rotateY(360deg);
-    }
+.square:hover {
+  filter: brightness(1.2);
+  transform: scale(0.95);
+  transition: all 0.3s ease;
 }

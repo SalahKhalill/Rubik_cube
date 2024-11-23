@@ -1,8 +1,9 @@
+
 import React from 'react';
 
 const Navigation = ({ setCurrentPage }) => {
   return (
-    <nav className="flex justify-center bg-gray-800 p-4 space-x-4">
+    <nav className="w-full bg-gray-800 p-4 flex justify-center space-x-4">
       <button 
         onClick={() => setCurrentPage('home')} 
         className="text-white hover:bg-gray-700 px-3 py-2 rounded"

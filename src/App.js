@@ -3,12 +3,13 @@ import Navigation from './components/Navigation';
 import HomePage from './components/HomePage';
 import ProjectPage from './components/ProjectPage';
 import AboutPage from './components/AboutPage';
-import './index.css'; // or './App.css'
+import './index.css';
+
 const App = () => {
   const [currentPage, setCurrentPage] = useState('home');
 
   const renderPage = () => {
-    switch(currentPage) {
+    switch (currentPage) {
       case 'home':
         return <HomePage />;
       case 'project':
@@ -21,9 +22,11 @@ const App = () => {
   };
 
   return (
-    <div className="app-container max-w-4xl mx-auto">
+    <div className="app-container">
       <Navigation setCurrentPage={setCurrentPage} />
-      {renderPage()}
+      <div className="content max-w-4xl mx-auto">
+        {renderPage()}
+      </div>
     </div>
   );
 };

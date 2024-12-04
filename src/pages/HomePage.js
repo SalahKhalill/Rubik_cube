@@ -1,21 +1,27 @@
-import React from 'react';
-import RubiksCube from '../components/RubiksCube';
-import { Link } from 'react-router-dom';
-import '../styles/global.css'
+import React from 'react'; 
+import RubiksCube from '../components/RubiksCube'; 
+import '../styles/global.css'  
 
-function HomePage() {
-  return (
-    <section className="hero">
-      <div className="hero-content">
-        <h1>Rubik's Cube Solving Robot</h1>
-        <p>An advanced robotic solution using Raspberry Pi and computer vision</p>
-        <Link to="/project" className="cta-button">Learn More</Link>
+function HomePage() {   
+  return (     
+    <section className="hero hero-black">
+      <div className="hero-content-centered">
+        <div className="rubiks-cube-container">
+          <RubiksCube />
+        </div>
+        <div className="hero-text">
+          <h1>
+            Make Your Move 
+            <br/>
+            with the world's 
+            <br/>
+            most iconic puzzle
+
+          </h1>
+        </div>
       </div>
-      <div className="hero-image">
-        <RubiksCube />
-      </div>
-    </section>
-  );
-}
+    </section>   
+  ); 
+}  
 
 export default HomePage;

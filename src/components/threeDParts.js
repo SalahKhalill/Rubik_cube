@@ -6,7 +6,7 @@ const threeDParts = [
   {
     name: "Hinge",
     fileName: "Hinge.stl",
-    // thumbnail: "https://content.instructables.com/FY5/68H2/L3X13GJB/FY568H2L3X13GJB.png?auto=webp&frame=1",
+    thumbnail: "https://content.instructables.com/FY5/68H2/L3X13GJB/FY568H2L3X13GJB.png?auto=webp&frame=1",
     downloadLink: "https://content.instructables.com/FYK/5WDB/L3X12XTQ/FYK5WDBL3X12XTQ.stl",
     svfLink: "https://content.instructables.com/FYK/5WDB/L3X12XTQ/forge-derivs/3ef8eced1/Hinge.svf"
   },

@@ -1,0 +1,325 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --text-color: #333;
+    --background-color: #f4f4f4;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+/* Navigation Styles */
+header {
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 1.5rem;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: var(--primary-color);
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    align-items: center;
+    padding: 6rem 5% 3rem;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.hero-content {
+    flex: 1;
+    padding-right: 2rem;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.hero-image {
+    flex: 1;
+    text-align: right;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+}
+
+.cta-button:hover {
+    background-color: #2980b9;
+}
+
+/* Project Details */
+.project-details {
+    padding: 6rem 5%;
+    background-color: white;
+}
+
+.project-description {
+    display: flex;
+    gap: 2rem;
+}
+
+.description-text, .project-components {
+    flex: 1;
+}
+
+.project-details h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+}
+
+.description-text ul {
+    list-style-type: none;
+    padding-left: 1rem;
+}
+
+.description-text ul li::before {
+    content: '✓';
+    color: var(--secondary-color);
+    margin-right: 0.5rem;
+}
+
+.project-components {
+    display: flex;
+    gap: 1rem;
+}
+
+.component {
+    background-color: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Team Section */
+.team-section {
+    background-color: var(--background-color);
+    padding: 4rem 5%;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.team-member {
+    background-color: white;
+    text-align: center;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.team-member:hover {
+    transform: translateY(-10px);
+}
+
+.team-member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+/* Contact Section */
+.contact-section {
+    padding: 4rem 5%;
+    background-color: white;
+}
+
+.contact-form {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form input,
+.contact-form textarea {
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.contact-form textarea {
+    min-height: 150px;
+}
+
+.contact-form button {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: #27ae60;
+}
+
+/* Footer */
+footer {
+    background-color: var(--text-color);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+/* Rubik's Cube Styles */
+.scene {
+    width: 200px;
+    height: 200px;
+    perspective: 600px;
+    margin: 0 auto;
+}
+
+.cube {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: rotate 20s infinite linear;
+}
+
+.cube:hover {
+    animation-play-state: paused;
+}
+
+.face {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border: 2px solid #000;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 2px;
+    background: #000;
+}
+
+.front { transform: translateZ(100px); }
+.back { transform: translateZ(-100px) rotateY(180deg); }
+.right { transform: translateX(100px) rotateY(90deg); }
+.left { transform: translateX(-100px) rotateY(-90deg); }
+.top { transform: translateY(-100px) rotateX(90deg); }
+.bottom { transform: translateY(100px) rotateX(-90deg); }
+
+.square {
+    width: 100%;
+    height: 100%;
+    transition: background-color 0.3s, transform 0.3s ease;
+}
+
+.cube .front-square { background: red; }
+.cube .back-square { background: orange; }
+.cube .right-square { background: blue; }
+.cube .left-square { background: green; }
+.cube .top-square { background: white; }
+.cube .bottom-square { background: yellow; }
+
+@keyframes rotate {
+    from { transform: rotateX(0) rotateY(0) rotateZ(0); }
+    to { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+    .hero, .project-description, .team-grid {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-content, .hero-image {
+        flex: none;
+        width: 100%;
+        margin: auto;
+    }
+
+    .project-description {
+        gap: 1rem;
+    }
+
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+
+    nav ul {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .hero {
+        padding: 4rem 5% 2rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .project-components {
+        flex-direction: column;
+    }
+}

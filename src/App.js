@@ -1,34 +1,30 @@
-import React, { useState } from 'react';
-import Navigation from './components/Navigation';
-import HomePage from './components/HomePage';
-import ProjectPage from './components/ProjectPage';
-import AboutPage from './components/AboutPage';
-import './index.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import HomePage from './pages/HomePage';
+import ProjectPage from './pages/ProjectPage';
+import TeamPage from './pages/TeamPage';
+import ContactPage from './pages/ContactPage';
+import './styles/global.css';
+import './index.css'
+import ThreeDPartsViewer from './components/threeDParts';
 
-const App = () => {
-  const [currentPage, setCurrentPage] = useState('home');
-
-  const renderPage = () => {
-    switch (currentPage) {
-      case 'home':
-        return <HomePage />;
-      case 'project':
-        return <ProjectPage />;
-      case 'about':
-        return <AboutPage />;
-      default:
-        return <HomePage />;
-    }
-  };
-
+function App() {
   return (
-    <div className="app-container">
-      <Navigation setCurrentPage={setCurrentPage} />
-      <div className="content max-w-4xl mx-auto">
-        {renderPage()}
+
+    <Router>
+      <div className="App">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/project" element={<ProjectPage />} />
+          <Route path="/team" element={<TeamPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+
+        </Routes>
       </div>
-    </div>
+    </Router>
   );
-};
-// ss
+}
+
 export default App;

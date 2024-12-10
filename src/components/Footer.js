@@ -24,6 +24,7 @@ const Footer = () => {
                 Contact Us
               </a>
               <a
+              
                 target="_blank"
                 rel="noopener noreferrer"
                 className="legal-link"

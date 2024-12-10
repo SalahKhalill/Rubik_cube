@@ -3,15 +3,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #eeee; /* Optional: Keep the website's background color */
+    background-color: #eeee; 
     color: black;
     padding: 2rem;
-    margin-top: 200px;
   }
   
   .history-content {
     display: flex;
-    max-width: 1200px; /* Adjust width as needed */
+    max-width: 1200px;
     width: 100%;
     justify-content: space-between;
     align-items: center;
@@ -64,14 +63,6 @@
             object-fit: contain;
         }
     }
-
-
-
-
-
-
-
-
     .btn {
         border: 1.5px solid black;
         border-radius: 8px;
@@ -84,7 +75,7 @@
         transition: border-color .3s cubic-bezier(1, 0, 0, 1), background-color .3s cubic-bezier(1, 0, 0, 1);
         display: flex;
         justify-content: center;
-        height: 50px; /* Adjust the height as needed */
+        height: 50px; 
       }
     
       .btn .btn-text {
@@ -102,3 +93,4 @@
     .linkk{
         text-decoration: none;
     }
+

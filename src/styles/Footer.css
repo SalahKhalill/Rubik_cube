@@ -1,0 +1,50 @@
+.footer-wrapper {
+    background-color: #000;
+    padding: 20px 0;
+    color: white;
+  }
+  
+  .containerr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .footer__legal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .footer__sm-logo {
+    margin-bottom: 20px;
+  }
+  
+  .footer__legal-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .footer__legal-links {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .legal-link {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  
+  .legal-link:hover {
+    text-decoration: underline;
+  }
+  
+  .footer-legal {
+    font-size: 12px;
+    color: #aaa;
+  }
+  

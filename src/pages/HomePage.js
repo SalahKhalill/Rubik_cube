@@ -3,6 +3,7 @@ import RubiksCube from '../components/RubiksCube';
 import '../styles/global.css'  
 import RobotSection from '../components/RobotHome';
 import HistorySection from '../components/HistoryHome';
+import LoopingText from '../components/LoopingText';
 
 function HomePage() {   
   return (     
@@ -28,7 +29,7 @@ function HomePage() {
     <section className="shared-background">
     <RobotSection />
     </section>
-
+    <LoopingText/>
     <section className="shared-background">
     <HistorySection />
     </section>

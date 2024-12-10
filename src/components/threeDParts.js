@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X } from 'lucide-react';
-import './ThreeDPartsViewer.css'; // Make sure to import the CSS file
+import '../styles/ThreeDPartsViewer.css'; // Make sure to import the CSS file
 
 const threeDParts = [
   {
@@ -123,7 +123,7 @@ const ThreeDPartsViewer = () => {
 
   return (
     <div className="container">
-      <h1 className="title">3D Parts Viewer</h1>
+      <h1 className="title">3D Parts </h1>
       
       <ul className="parts-list">
         {threeDParts.map((part) => (

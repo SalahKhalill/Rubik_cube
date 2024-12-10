@@ -8,6 +8,7 @@ import ContactPage from './pages/ContactPage';
 import './styles/global.css';
 import './index.css'
 import ThreeDPartsViewer from './components/threeDParts';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/contact" element={<ContactPage />} />
 
         </Routes>
+        <Footer/>
       </div>
     </Router>
   );

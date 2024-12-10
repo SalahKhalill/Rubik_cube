@@ -18,7 +18,7 @@ function ContactPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert('Message sent!'); // Replace with actual submission logic
+    alert('Message sent!'); 
     console.log(formData);
   };
 

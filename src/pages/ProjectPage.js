@@ -4,8 +4,9 @@ import '../components/threeDParts'
 import ThreeDPartsViewer from '../components/threeDParts';
 function ProjectPage() {
   return (
+    <>
     <section className="project-details">
-      <h2>Project Overview</h2>
+      <h2>Robot Overview</h2>
       <div className="project-description">
         <div className="description-text">
           <p>Our robot autonomously solves Rubik's Cubes using advanced computer vision and precision robotics. Powered by a Raspberry Pi, the system analyzes cube states, calculates optimal solving algorithms, and executes precise mechanical rotations.</p>
@@ -32,8 +33,14 @@ function ProjectPage() {
           </div>
         </div>
       </div>
-      <ThreeDPartsViewer/>
+      {/* <ThreeDPartsViewer/> */}
     </section>
+    <section>
+    <ThreeDPartsViewer/>
+
+    </section>
+    </>
+
   );
 }
 

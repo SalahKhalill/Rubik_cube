@@ -1,96 +1,97 @@
 /* History Section Styles */
 .history-section {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #eeee; 
-    color: black;
-    padding: 2rem;
-  }
-  
-  .history-content {
-    display: flex;
-    max-width: 1200px;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    gap: 2rem;
-  }
-  
-  .text-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #eeee; 
+  color: black;
+  padding: 2rem;
+}
+
+.history-content {
+  display: flex;
+  max-width: 1200px;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.text-content {
+  flex: 1;
+}
+
+.text-content h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.text-content p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+
+.image-content {
     flex: 1;
+    text-align: center;
   }
   
-  .text-content h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+  .rubiks-image {
+      width: 100%;
+      max-width: 600px; 
+      object-fit: contain;
+      max-height: 100vh;
   }
-  
-  .text-content p {
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-  }
-  
-  
-  .image-content {
-      flex: 1;
-      text-align: center;
-    }
-    
-    .rubiks-image {
-        width: 100%;
-        max-width: 600px; 
-        object-fit: contain;
-        max-height: 100vh;
-    }
-    @media (max-width: 768px) {
-        .history-content {
-            flex-direction: column;
-            text-align: center;
-        }
-        
-        .image-content {
-            margin-top: 1rem;
-        }
-        .history-section{
-            margin-top: 110px;
-        }
-        
-        .rubiks-image {
-            width: 100%;
-            max-width: 600px; 
-            object-fit: contain;
-        }
-    }
-    .btn {
-        border: 1.5px solid black;
-        border-radius: 8px;
-        background-color: black;
-        color: #fff;
-        cursor: pointer;
-        align-items: center;
-        padding: 0 1.5rem;
-        text-decoration: none;
-        transition: border-color .3s cubic-bezier(1, 0, 0, 1), background-color .3s cubic-bezier(1, 0, 0, 1);
-        display: flex;
-        justify-content: center;
-        height: 50px; 
+  @media (max-width: 768px) {
+      .history-content {
+          flex-direction: column;
+          text-align: center;
       }
-    
-      .btn .btn-text {
-        color: white;
-        letter-spacing: 0;
-        text-transform: uppercase;
-        margin-top: 1rem;
-        margin-bottom: .85rem;
-        font-family: Oxanium, sans-serif !important;
-        font-size: 24px;
-        font-weight: 800;
-        line-height: 1;
+      
+      .image-content {
+          margin-top: 1rem;
       }
-    
-    .linkk{
-        text-decoration: none;
+      .history-section{
+          margin-top: 110px;
+      }
+      
+      .rubiks-image {
+          width: 100%;
+          max-width: 600px; 
+          object-fit: contain;
+      }
+  }
+  .btn {
+      border: 1.5px solid black;
+      border-radius: 8px;
+      background-color: black;
+      color: #fff;
+      cursor: pointer;
+      align-items: center;
+      padding: 0 1.5rem;
+      text-decoration: none;
+      transition: border-color .3s cubic-bezier(1, 0, 0, 1), background-color .3s cubic-bezier(1, 0, 0, 1);
+      display: flex;
+      justify-content: center;
+      height: 50px; 
     }
+  
+    .btn .btn-text {
+      color: white;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      margin-top: 1rem;
+      margin-bottom: .85rem;
+      font-family: Oxanium, sans-serif !important;
+      font-size: 24px;
+      font-weight: 800;
+      line-height: 1;
+    }
+  
+  .linkk{
+      text-decoration: none;
+  }
 

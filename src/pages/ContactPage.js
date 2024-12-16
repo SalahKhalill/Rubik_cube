@@ -29,7 +29,7 @@ function ContactPage() {
         <input 
           type="text" 
           name="name"
-          placeholder="Your Name" 
+          placeholder="Username" 
           value={formData.name}
           onChange={handleChange}
           required 

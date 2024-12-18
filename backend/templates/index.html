@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rubik's Cube Solver</title>
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        #videoFeed {
+            max-width: 100%;
+            margin: 20px 0;
+        }
+        .button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+        .button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Rubik's Cube Solver</h1>
+        <img id="videoFeed" src="{{ url_for('video_feed') }}" alt="Video Feed" style="max-width: 100%; margin: 20px 0;" onerror="handleVideoError()" onload="console.log('Video feed connected successfully')">
+        <div>
+            <button class="button" onclick="captureFrame()">Capture Frame</button>
+            <button class="button" onclick="getSolution()">Get Solution</button>
+        </div>
+        <div id="solution"></div>
+    </div>
+
+    <script>
+        let reconnectAttempts = 0;
+        const maxReconnectAttempts = 5;
+
+        function handleVideoError() {
+            console.log("Video stream error detected");
+            reconnectAttempts++;
+            
+            if (reconnectAttempts <= maxReconnectAttempts) {
+                console.log(`Attempting to reconnect... (${reconnectAttempts}/${maxReconnectAttempts})`);
+                setTimeout(reconnectVideoFeed, 1000);
+            } else {
+                console.log("Max reconnection attempts reached. Please refresh the page.");
+            }
+        }
+
+        function reconnectVideoFeed() {
+            const videoFeed = document.getElementById('videoFeed');
+            videoFeed.src = "{{ url_for('video_feed') }}?" + new Date().getTime();
+        }
+
+        // Reset reconnection attempts when video loads successfully
+        function handleVideoLoad() {
+            console.log("Video feed connected successfully");
+            reconnectAttempts = 0;
+        }
+
+        // Update the video feed img tag
+        document.addEventListener('DOMContentLoaded', function() {
+            const videoFeed = document.getElementById('videoFeed');
+            videoFeed.onerror = handleVideoError;
+            videoFeed.onload = handleVideoLoad;
+        });
+
+        async function captureFrame() {
+            try {
+                const response = await fetch('/capture', {
+                    method: 'POST'
+                });
+                const data = await response.json();
+                if (data.success) {
+                    console.log('Frame captured successfully');
+                }
+            } catch (error) {
+                console.error('Error capturing frame:', error);
+            }
+        }
+
+        async function getSolution() {
+            try {
+                const response = await fetch('/solve', {
+                    method: 'POST'
+                });
+                const data = await response.json();
+                if (data.notation) {
+                    document.getElementById('solution').innerHTML = 
+                        `<h3>Solution:</h3><p>${data.notation}</p>`;
+                } else if (data.error) {
+                    document.getElementById('solution').innerHTML = 
+                        `<h3>Error:</h3><p>${data.error}</p>`;
+                }
+            } catch (error) {
+                console.error('Error getting solution:', error);
+            }
+        }
+    </script>
+</body>
+</html> 
+</html> 
+
+
+
+
+
+
+
+

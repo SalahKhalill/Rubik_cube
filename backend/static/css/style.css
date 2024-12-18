@@ -1,0 +1,43 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.video-container {
+    margin: 20px 0;
+}
+
+.video-container img {
+    max-width: 100%;
+    border: 2px solid #333;
+    border-radius: 8px;
+}
+
+.controls {
+    margin: 20px 0;
+}
+
+.btn {
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.solution-container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    min-height: 50px;
+} 

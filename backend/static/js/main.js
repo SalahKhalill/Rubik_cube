@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (data.error) {
                 solutionDiv.innerHTML = `<p class="error">${data.error}</p>`;
             } else {
-                solutionDiv.innerHTML = `<p>Solution: ${data.notation}</p>`;
+                solutionDiv.innerHTML = `<p>Solution: ${data.solution}</p>`;
             }
         } catch (error) {
             console.error('Error:', error);
@@ -45,4 +45,4 @@ document.addEventListener('DOMContentLoaded', function() {
             captureBtn.click();
         }
     });
-}); 
+});

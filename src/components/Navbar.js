@@ -30,7 +30,7 @@ function Navbar() {
         <li><Link to="/project">Project</Link></li>
         <li><Link to="/team">Team</Link></li>
         <li><Link to="/contact">Contact</Link></li>
-        <li><a href="http://localhost:5002/" target="_blank" rel="noopener noreferrer">Solving</a></li>
+        <li><a href="http://localhost:5002/" rel="noopener noreferrer">Solving</a></li>
       </ul>
     </nav>
   );

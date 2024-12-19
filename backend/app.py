@@ -4,7 +4,7 @@ from video import webcam
 import json
 import time
 import threading
-
+import kociemba
 app = Flask(__name__)
 
 # Global variable to track stream status
@@ -99,7 +99,6 @@ def capture():
     except Exception as e:
         print(f"Capture error: {e}")
         return jsonify({'success': False, 'error': str(e)}), 500
-
 @app.route('/solve', methods=['POST'])
 def solve():
     """Get solution for current cube state."""
@@ -113,11 +112,27 @@ def solve():
         if webcam.state_already_solved():
             return jsonify({'error': 'Cube already solved'}), 400
             
+        # Get the cube notation
         notation = webcam.get_result_notation()
-        return jsonify({'notation': notation})
+        
+        try:
+            # Get the solution using Kociemba algorithm
+            solution = kociemba.solve(notation)
+            # Get number of moves in solution
+            moves = len(solution.split(' '))
+            
+            return jsonify({
+                'solution': solution,
+                'moves': moves,
+                'notation': notation  # Include original notation if needed
+            })
+            
+        except Exception as e:
+            print(f"Kociemba solve error: {str(e)}")
+            return jsonify({'error': 'Could not solve cube state. Please try scanning again.'}), 400
+            
     except Exception as e:
         print(f"Solve error: {e}")
         return jsonify({'error': str(e)}), 500
-
 if __name__ == '__main__':
     app.run(debug=True, port=5002, threaded=True)

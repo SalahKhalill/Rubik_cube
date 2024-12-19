@@ -23,14 +23,13 @@ class ColorDetection:
 
         # HSV color ranges for better detection
         self.hsv_color_ranges = {
-            'red': [(0, 100, 100), (10, 255, 255)],     # Adjust these ranges
-            'orange': [(10, 100, 100), (25, 255, 255)],
+            'red': [(0, 150, 120), (6, 255, 255)],  # Adjusted range for red
+            'orange': [(7, 150, 150), (12, 255, 255)],  # Adjusted range for orange
             'yellow': [(25, 100, 100), (35, 255, 255)],
             'green': [(35, 100, 100), (85, 255, 255)],
             'blue': [(85, 100, 100), (130, 255, 255)],
             'white': [(0, 0, 200), (180, 30, 255)]      # Adjust these ranges
         }
-
         # Load saved calibration if available
         self.cube_color_palette = config.get_setting(
             CUBE_PALETTE,

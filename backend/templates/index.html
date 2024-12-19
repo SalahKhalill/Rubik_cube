@@ -96,9 +96,9 @@
                     method: 'POST'
                 });
                 const data = await response.json();
-                if (data.notation) {
+                if (data.solution) {
                     document.getElementById('solution').innerHTML = 
-                        `<h3>Solution:</h3><p>${data.notation}</p>`;
+                        `<h3>Solution:</h3><p>${data.solution}</p>`;
                 } else if (data.error) {
                     document.getElementById('solution').innerHTML = 
                         `<h3>Error:</h3><p>${data.error}</p>`;

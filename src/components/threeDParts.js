@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X } from 'lucide-react';
-import '../styles/ThreeDPartsViewer.css'; // Make sure to import the CSS file
+import '../styles/ThreeDPartsViewer.css'; 
 
 const threeDParts = [
   {

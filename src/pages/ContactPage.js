@@ -19,7 +19,7 @@ function ContactPage() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent default form submission behavior
+    e.preventDefault(); 
     setIsSubmitting(true);
 
     try {
@@ -33,7 +33,7 @@ function ContactPage() {
 
       if (response.ok) {
         setResponseMessage('Message sent successfully!');
-        setFormData({ name: '', email: '', message: '' }); // Reset form fields
+        setFormData({ name: '', email: '', message: '' });
       } else {
         setResponseMessage('Failed to send message. Please try again later.');
       }

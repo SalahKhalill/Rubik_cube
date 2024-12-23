@@ -7,7 +7,6 @@ import threading
 import kociemba
 app = Flask(__name__)
 
-# Global variable to track stream status
 stream_active = False
 
 def generate_frames():
@@ -17,25 +16,21 @@ def generate_frames():
     
     while stream_active:
         try:
-            # Check webcam status
             if not webcam.cam.isOpened():
                 print("Reopening camera...")
                 webcam.cam = cv2.VideoCapture(0)
                 time.sleep(0.5)
                 continue
 
-            # Read frame
             success, frame = webcam.cam.read()
             if not success:
                 print("Failed to read frame")
                 time.sleep(0.1)
                 continue
 
-            # Process frame
             webcam.frame = frame
             webcam.process_frame()
 
-            # Encode frame
             try:
                 encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 85]
                 ret, buffer = cv2.imencode('.jpg', webcam.frame, encode_param)
@@ -49,7 +44,7 @@ def generate_frames():
                        b'Content-Length: ' + str(len(frame_bytes)).encode() + b'\r\n'
                        b'\r\n' + frame_bytes + b'\r\n')
                        
-                time.sleep(0.03)  # Limit frame rate to ~30 fps
+                time.sleep(0.03)  
                 
             except Exception as e:
                 print(f"Frame encoding error: {e}")
@@ -112,19 +107,16 @@ def solve():
         if webcam.state_already_solved():
             return jsonify({'error': 'Cube already solved'}), 400
             
-        # Get the cube notation
         notation = webcam.get_result_notation()
         
         try:
-            # Get the solution using Kociemba algorithm
             solution = kociemba.solve(notation)
-            # Get number of moves in solution
             moves = len(solution.split(' '))
             
             return jsonify({
                 'solution': solution,
                 'moves': moves,
-                'notation': notation  # Include original notation if needed
+                'notation': notation  
             })
             
         except Exception as e:

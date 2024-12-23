@@ -1,0 +1,83 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.video-container {
+    margin: 20px 0;
+}
+
+.video-container img {
+    max-width: 100%;
+    border: 2px solid #333;
+    border-radius: 8px;
+}
+
+.controls {
+    margin: 20px 0;
+}
+
+.btn {
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#content h2:not(:first-of-type) {
+    margin: 0.2em 0;
+}
+#content h2 {
+    display: inline-block;
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    font-size: 2em;
+    border-top: 1px solid rgba(0, 0, 0, 0.3);
+    padding: 0.3em 0;
+}
+
+#content h3 {
+    text-align: center;
+    font-size: 1.3em;
+    font-weight: normal;
+    width: 100%;
+    margin: 1em 0 0.5em 0;
+}
+
+
+.cube-substep {
+    display: flex;
+    overflow-x: auto;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    margin: 0;
+}
+
+#content .cube-text {
+    text-align: center;
+    font-family: "Open Sans", sans-serif;
+    color: black;
+    line-height: 1.7;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.solution-container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    min-height: 50px;
+} 

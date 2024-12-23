@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet" href="style.css">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rubik's Cube Solver</title>
     <style>
+
+        body{
+            text-align: center;
+        }
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -29,6 +34,125 @@
             background-color: #cccccc;
             cursor: not-allowed;
         }
+        .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.video-container {
+    margin: 20px 0;
+}
+
+.video-container img {
+    max-width: 100%;
+    border: 2px solid #333;
+    border-radius: 8px;
+}
+
+.controls {
+    margin: 20px 0;
+}
+
+.button {
+  padding: 1.3em 3em;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+
+.button:hover {
+  background-color: #23c483;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;  
+  transform: translateY(-7px);
+}
+.button:active {
+  transform: translateY(-1px);
+}
+
+#content h2:not(:first-of-type) {
+    margin: 0.2em 0;
+}
+
+h2 {
+    display:inline-block;
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    font-size: 2em;
+    border-top: 1px solid rgba(0, 0, 0, 0.3);
+    padding: 0.3em 0;
+}
+
+h3 {
+    font-size: 1.7em;
+    font-weight: normal;
+    width: 100%;
+    margin: 1em 0 0.5em 0;
+}
+
+
+.cube-substep {
+    display: flex;
+    overflow-x: auto;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    margin: 0;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.solution-container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    min-height: 50px;
+} 
+
+.cube-text {
+    text-align: center;
+    font-family: "Open Sans", sans-serif;
+    color: black;
+    line-height: 1.7;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.cube-substep{
+    text-align: center;
+    color: black;
+    font-size: 0.85em;
+    line-height: 1.7;
+    display: flex;
+    overflow-x: auto;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    margin: 0;
+
+}
+
+.cube-substep .cube-step-cube-container .cube {
+    width: 15em;
+    height: 15em;
+    margin: 0.3em;
+}
     </style>
 </head>
 <body>
@@ -41,6 +165,103 @@
         </div>
         <div id="solution"></div>
     </div>
+
+
+    <h2>Face Turns</h2>
+
+    <h3>The basic moves are <b>U</b>p, <b>D</b>own, <b>R</b>ight, <b>L</b>eft, <b>F</b>ront, <b>B</b>ack.</h3>
+
+    <h3>Each move means to turn that side clockwise, as if you were facing that side.</h3>
+
+    <div class="cube-substep">
+        <div class = "cube-step-cube-container">
+            <img width="300" height="300" class="cube" src="{{ url_for('static', filename='cubePics/cubeU.png') }}">
+            <div class="cube-text">U</div>
+        </div>
+        <div class = "cube-step-cube-container">
+            <img width="300" height="300" class="cube" src="{{ url_for('static', filename='cubePics/cubeD.png') }}">
+            <div class="cube-text">D</div>
+        </div>
+        <div class = "cube-step-cube-container">
+            <img width="300" height="300" class="cube" src="{{ url_for('static', filename='cubePics/cubeR.png') }}">
+            <div class="cube-text">R</div>
+        </div>
+        <div class = "cube-step-cube-container">
+            <img width="300" height="300" class="cube" src="{{ url_for('static', filename='cubePics/cubeL.png') }}">
+            <div class="cube-text">L</div>
+        </div>
+        <div class = "cube-step-cube-container">
+            <img width="300" height="300" class="cube" src="{{ url_for('static', filename='cubePics/cubeF.png') }}">
+            <div class="cube-text">F</div>
+        </div>
+        <div class = "cube-step-cube-container">
+            <img width="300" height="300" class="cube" src="{{ url_for('static', filename='cubePics/cubeB.png') }}">
+            <div class="cube-text">B</div>
+        </div>
+    </div>
+
+    <h3>An apostrophe (pronounced as <i>prime</i>)
+         means to turn the face in the opposite direction (counterclockwise).</h3>
+
+    <div class="cube-substep">
+        <div class = "cube-step-cube-container">
+            <img width="300" height="300" class="cube" src="{{ url_for('static', filename='cubePics/cubeUu.png') }}">
+            <div class="cube-text">U'</div>
+        </div>
+        <div class = "cube-step-cube-container">
+            <img width="300" height="300" class="cube" src="{{ url_for('static', filename='cubePics/cubeDd.png') }}">
+            <div class="cube-text">D'</div>
+        </div>
+        <div class = "cube-step-cube-container">
+            <img width="300" height="300" class="cube" src="{{ url_for('static', filename='cubePics/cubeRr.png') }}">
+            <div class="cube-text">R'</div>
+        </div>
+        <div class = "cube-step-cube-container">
+            <img width="300" height="300" class="cube" src="{{ url_for('static', filename='cubePics/cubeLl.png') }}">
+            <div class="cube-text">L'</div>
+        </div>
+        <div class = "cube-step-cube-container">
+            <img width="300" height="300" class="cube" src="{{ url_for('static', filename='cubePics/cubeFf.png') }}">
+            <div class="cube-text">F'</div>
+        </div>
+        <div class = "cube-step-cube-container">
+            <img width="300" height="300" class="cube" src="{{ url_for('static', filename='cubePics/cubeBb.png') }}">
+            <div class="cube-text">B'</div>
+        </div>
+    </div>
+
+
+    <h3>The number 2 means to turn that face twice.</h3>
+
+    <div class="cube-substep">
+        <div class = "cube-step-cube-container">
+            <img width="300" height="300" class="cube" src="{{ url_for('static', filename='cubePics/cubeU2.png') }}">
+            <div class="cube-text">U2</div>
+        </div>
+        <div class = "cube-step-cube-container">
+            <img width="300" height="300" class="cube" src="{{ url_for('static', filename='cubePics/cubeD2.png') }}">
+            <div class="cube-text">D2</div>
+        </div>
+        <div class = "cube-step-cube-container">
+            <img width="300" height="300" class="cube" src="{{ url_for('static', filename='cubePics/cubeR2.png') }}">
+            <div class="cube-text">R2</div>
+        </div>
+        <div class = "cube-step-cube-container">
+            <img width="300" height="300" class="cube" src="{{ url_for('static', filename='cubePics/cubeL2.png') }}">
+            <div class="cube-text">L2</div>
+        </div>
+        <div class = "cube-step-cube-container">
+            <img width="300" height="300" class="cube" src="{{ url_for('static', filename='cubePics/cubeF2.png') }}">
+            <div class="cube-text">F2</div>
+        </div>
+        <div class = "cube-step-cube-container">
+            <img width="300" height="300" class="cube" src="{{ url_for('static', filename='cubePics/cubeB2.png') }}">
+            <div class="cube-text">B2</div>
+        </div>
+    </div>
+
+    <h4><b>Note:</b> Double moves such as U2 can be done clockwise or counterclockwise. The direction of the move can be specified by using U2 and U2' (to show finger tricks), but this is not always used.</h4>
+    
 
     <script>
         let reconnectAttempts = 0;

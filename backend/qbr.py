@@ -34,10 +34,8 @@ class Qbr:
         self.normalize = normalize
 
     def run(self):
-        """The main function that will run the Qbr program."""
         state = webcam.run()
 
-        # If we receive a number then it's an error code.
         if isinstance(state, int) and state > 0:
             self.print_E_and_exit(state)
 
@@ -57,7 +55,6 @@ class Qbr:
                 print('{}. {}'.format(index + 1, text))
 
     def print_E_and_exit(self, code):
-        """Print an error message based on the code and exit the program."""
         if code == E_INCORRECTLY_SCANNED:
             print('\033[0;33m[{}] {}'.format(i18n.t('error'), i18n.t('haventScannedAllSides')))
             print('{}\033[0m'.format(i18n.t('pleaseTryAgain')))
@@ -66,7 +63,6 @@ class Qbr:
         sys.exit(code)
 
 if __name__ == '__main__':
-    # Define the application arguments.
     parser = argparse.ArgumentParser()
     parser.add_argument(
         '-n',

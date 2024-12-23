@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (data.error) {
                 solutionDiv.innerHTML = `<p class="error">${data.error}</p>`;
             } else {
-                solutionDiv.innerHTML = `<p>Solution: ${data.solution}</p>`;
+                solutionDiv.innerHTML = `<p class="sol">Solution: ${data.solution}</p>`;
             }
         } catch (error) {
             console.error('Error:', error);

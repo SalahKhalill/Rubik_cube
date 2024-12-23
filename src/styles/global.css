@@ -251,10 +251,10 @@ nav {
 }
 /* Team Section */
 .team-section {
-    background-color: var(--background-color);
+    /* background-color: var(--background-color); */
     padding: 4rem 5%;
-    background: linear-gradient(135deg, #000000 0%, #c3cfe2 100%);
-    height: 100vh;
+    /* background: linear-gradient(135deg, #000000 0%, #c3cfe2 100%); */
+    height: 68vh;
 }
 
 .team-grid {
@@ -288,6 +288,7 @@ nav {
 .contact-section {
     padding: 4rem 5%;
     background-color: white;
+    height: 68vh;
 }
 
 .contact-form {
@@ -477,6 +478,7 @@ nav {
     transform: translate(-50%, -50%);
     z-index: 2;
   }
+  
   @media screen and (max-width: 768px) { 
     .rubiks-cube-container {
       top: 70%;
@@ -487,3 +489,53 @@ nav {
 
 
 
+.pcb-details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 30px; 
+  padding: 20px;
+}
+
+.card-image {
+  max-width: 100%; 
+  height: auto; 
+  width: 500px; 
+  border-radius: 12px; 
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); 
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.card-image:hover {
+  transform: scale(1.08); 
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25); 
+}
+
+@media (max-width: 768px) {
+  .card-image {
+      width: 300px; 
+  }
+}
+
+@media (max-width: 480px) {
+  .card-image {
+      width: 250px; 
+  }
+}
+
+
+
+
+
+@media (max-width: 768px) {
+  .hero-text h1 {
+      font-size: 2.5em; /* Reduce the font size for tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-text h1 {
+      font-size: 2em; /* Further reduce the font size for mobile phones */
+  }
+}

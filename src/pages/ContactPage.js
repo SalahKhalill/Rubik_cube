@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../styles/global.css'
+import '../styles/global.css';
 
 function ContactPage() {
   const [formData, setFormData] = useState({
@@ -7,6 +7,8 @@ function ContactPage() {
     email: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [responseMessage, setResponseMessage] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,10 +18,31 @@ function ContactPage() {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert('Message sent!'); 
-    console.log(formData);
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevent default form submission behavior
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('https://formspree.io/f/mpwwzerg', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        setResponseMessage('Message sent successfully!');
+        setFormData({ name: '', email: '', message: '' }); // Reset form fields
+      } else {
+        setResponseMessage('Failed to send message. Please try again later.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setResponseMessage('An error occurred. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -49,8 +72,11 @@ function ContactPage() {
           onChange={handleChange}
           required 
         />
-        <button type="submit">Send Message</button>
+        <button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? 'Sending...' : 'Send Message'}
+        </button>
       </form>
+      {responseMessage && <p className="response-message">{responseMessage}</p>}
     </section>
   );
 }

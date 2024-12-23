@@ -3,9 +3,8 @@ import '../styles/global.css'
 
 function TeamPage() {
   const teamMembers = [
-    { name: "Alice Johnson", role: "Robotics Engineer", image: "team-member1.jpg" },
-    { name: "Bob Martinez", role: "Computer Vision Specialist", image: "team-member2.jpg" },
-    { name: "Charlie Wong", role: "Mechanical Design Lead", image: "team-member3.jpg" }
+    { name: "Ziead Hassan", role: "Backend Developer"},
+    { name: "Saad Elseyh`", role: "Fronend Developer"},
   ];
 
   return (
@@ -14,7 +13,6 @@ function TeamPage() {
       <div className="team-grid">
         {teamMembers.map((member, index) => (
           <div key={index} className="team-member">
-            <img src={member.image} alt={member.name} />
             <h3>{member.name}</h3>
             <p>{member.role}</p>
           </div>

@@ -1,15 +1,22 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# vim: fenc=utf-8 ts=4 sw=4 et
 
 import math
 from constants import LOCALES
 
 def get_next_locale(locale):
+    """Cycle through the locales and get the next locale."""
     keys = list(LOCALES.keys())
     index = keys.index(locale)
     if index + 1 >= len(keys):
         return keys[0]
     return keys[index + 1]
 
+# Taken from https://stackoverflow.com/a/16020102
 def bgr2lab(inputColor):
+    """Convert BGR to LAB."""
+    # Convert BGR to RGB
     inputColor = (inputColor[2], inputColor[1], inputColor[0])
 
     num = 0
@@ -35,9 +42,9 @@ def bgr2lab(inputColor):
     XYZ[ 1 ] = round( Y, 4 )
     XYZ[ 2 ] = round( Z, 4 )
 
-    XYZ[ 0 ] = float( XYZ[ 0 ] ) / 95.047            
-    XYZ[ 1 ] = float( XYZ[ 1 ] ) / 100.0         
-    XYZ[ 2 ] = float( XYZ[ 2 ] ) / 108.883    
+    XYZ[ 0 ] = float( XYZ[ 0 ] ) / 95.047            # ref_X =  95.047    Observer= 2°, Illuminant= D65
+    XYZ[ 1 ] = float( XYZ[ 1 ] ) / 100.0             # ref_Y = 100.000
+    XYZ[ 2 ] = float( XYZ[ 2 ] ) / 108.883          # ref_Z = 108.883
 
     num = 0
     for value in XYZ:
@@ -62,7 +69,9 @@ def bgr2lab(inputColor):
 
     return Lab
 
+# Copyright to https://github.com/lovro-i/CIEDE2000.
 def ciede2000(Lab_1, Lab_2):
+    """Calculates CIEDE2000 color distance between two CIE L*a*b* colors."""
     C_25_7 = 6103515625 # 25**7
 
     L1, a1, b1 = Lab_1[0], Lab_1[1], Lab_1[2]

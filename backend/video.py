@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# vim: fenc=utf-8 ts=4 sw=4 et
 
 import cv2
 from colordetection import color_detector
@@ -54,6 +57,7 @@ class Webcam:
         self.done_calibrating = False
 
     def draw_stickers(self, stickers, offset_x, offset_y):
+        """Draws the given stickers onto the given frame."""
         index = -1
         for row in range(3):
             for col in range(3):
@@ -82,13 +86,16 @@ class Webcam:
                 )
 
     def draw_preview_stickers(self):
+        """Draw the current preview state onto the given frame."""
         self.draw_stickers(self.preview_state, STICKER_AREA_OFFSET, STICKER_AREA_OFFSET)
 
     def draw_snapshot_stickers(self):
+        """Draw the current snapshot state onto the given frame."""
         y = STICKER_AREA_TILE_SIZE * 3 + STICKER_AREA_TILE_GAP * 2 + STICKER_AREA_OFFSET * 2
         self.draw_stickers(self.snapshot_state, STICKER_AREA_OFFSET, y)
 
     def find_contours(self, dilatedFrame):
+        """Find the contours of a 3x3x3 cube."""
         contours, hierarchy = cv2.findContours(dilatedFrame, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
         final_contours = []
 
@@ -107,10 +114,12 @@ class Webcam:
                 if ratio >= 0.8 and ratio <= 1.2 and w >= 30 and w <= 60 and area / (w * h) > 0.4:
                     final_contours.append((x, y, w, h))
 
+        # Return early if we didn't found 9 or more contours.
         if len(final_contours) < 9:
             return []
 
-
+        # Step 2/4: Find the contour that has 9 neighbors (including itself)
+        # and return all of those neighbors.
         found = False
         contour_neighbors = {}
         for index, contour in enumerate(final_contours):
@@ -120,7 +129,13 @@ class Webcam:
             center_y = y + h / 2
             radius = 1.5
 
-           
+            # Create 9 positions for the current contour which are the
+            # neighbors. We'll use this to check how many neighbors each contour
+            # has. The only way all of these can match is if the current contour
+            # is the center of the cube. If we found the center, we also know
+            # all the neighbors, thus knowing all the contours and thus knowing
+            # this shape can be considered a 3x3x3 cube. When we've found those
+            # contours, we sort them and return them.
             neighbor_positions = [
                 # top left
                 [(center_x - w * radius), (center_y - h * radius)],
@@ -270,13 +285,16 @@ class Webcam:
         self.frame = np.array(frame)
 
     def get_text_size(self, text, size=TEXT_SIZE):
+        """Get text size based on the default freetype2 loaded font."""
         return self.get_font(size).getsize(text)
 
     def draw_scanned_sides(self):
+        """Display how many sides are scanned by the user."""
         text = i18n.t('scannedSides', num=len(self.result_state.keys()))
         self.render_text(text, (20, self.height - 20), anchor='lb')
 
     def draw_current_color_to_calibrate(self):
+        """Display the current side's color that needs to be calibrated."""
         offset_y = 20
         font_size = int(TEXT_SIZE * 1.25)
         if self.done_calibrating:

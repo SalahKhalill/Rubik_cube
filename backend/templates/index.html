@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" href="style.css">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -152,10 +152,6 @@ h3 {
     width: 15em;
     height: 15em;
     margin: 0.3em;
-}
-.sol{
-    font-size: 31px;
-    font-weight: bold;
 }
     </style>
 </head>
@@ -323,10 +319,10 @@ h3 {
                 const data = await response.json();
                 if (data.solution) {
                     document.getElementById('solution').innerHTML = 
-                        `<h3>Solution:</h3><p style="font-weight: bold; font-size: 20px;">${data.solution}</p>`;
+                        `<h3>Solution:</h3><p style="font-size: 32px; font-weight: bold;">${data.solution}</p>`;
                 } else if (data.error) {
                     document.getElementById('solution').innerHTML = 
-                        `<h3>Error:</h3><p style="font-weight: bold; font-size: 20px;">${data.error}</p>`;
+                        `<h3>Error:</h3><p>${data.error}</p>`;
                 }
             } catch (error) {
                 console.error('Error getting solution:', error);
@@ -335,12 +331,4 @@ h3 {
     </script>
 </body>
 </html> 
-</html> 
-
-
-
-
-
-
-
-
+</html>

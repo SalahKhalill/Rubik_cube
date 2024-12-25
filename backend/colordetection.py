@@ -1,4 +1,6 @@
-
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# vim: fenc=utf-8 ts=4 sw=4 et
 
 import numpy as np
 import cv2
@@ -9,6 +11,7 @@ from constants import CUBE_PALETTE, COLOR_PLACEHOLDER
 class ColorDetection:
 
     def __init__(self):
+        # Default color values in BGR
         self.prominent_color_palette = {
             'red'   : (0, 0, 255),
             'orange': (0, 165, 255),
@@ -18,15 +21,16 @@ class ColorDetection:
             'yellow': (0, 255, 255)
         }
 
-     
+        # HSV color ranges for better detection
         self.hsv_color_ranges = {
-            'red': [(0, 150, 120), (6, 255, 255)],  
-            'orange': [(7, 150, 150), (12, 255, 255)],  
+            'red': [(0, 150, 120), (6, 255, 255)],  # Adjusted range for red
+            'orange': [(7, 150, 150), (12, 255, 255)],  # Adjusted range for orange
             'yellow': [(25, 100, 100), (35, 255, 255)],
             'green': [(35, 100, 100), (85, 255, 255)],
             'blue': [(85, 100, 100), (130, 255, 255)],
-            'white': [(0, 0, 200), (180, 30, 255)]      
+            'white': [(0, 0, 200), (180, 30, 255)]      # Adjust these ranges
         }
+        # Load saved calibration if available
         self.cube_color_palette = config.get_setting(
             CUBE_PALETTE,
             self.prominent_color_palette
@@ -44,16 +48,21 @@ class ColorDetection:
     def get_dominant_color(self, roi):
         """Get dominant color from ROI using HSV color space."""
         try:
+            # Convert to HSV
             hsv = cv2.cvtColor(roi, cv2.COLOR_BGR2HSV)
             
+            # Get average HSV values
             h, s, v = cv2.mean(hsv)[:3]
-            print(f"Detected HSV: H={h}, S={s}, V={v}") 
+            print(f"Detected HSV: H={h}, S={s}, V={v}")  # Debugging line
+            
+            # Find matching color range
             for color_name, (lower, upper) in self.hsv_color_ranges.items():
                 if (lower[0] <= h <= upper[0] and 
                     lower[1] <= s <= upper[1] and 
                     lower[2] <= v <= upper[2]):
                     return self.cube_color_palette[color_name]
             
+            # If no match found, use K-means
             pixels = np.float32(roi.reshape(-1, 3))
             criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 200, .1)
             _, _, palette = cv2.kmeans(pixels, 1, None, criteria, 10, cv2.KMEANS_RANDOM_CENTERS)
@@ -69,8 +78,10 @@ class ColorDetection:
     def get_closest_color(self, bgr):
         """Get closest color using both HSV and Lab color spaces."""
         try:
+            # Convert to HSV
             hsv = cv2.cvtColor(np.uint8([[bgr]]), cv2.COLOR_BGR2HSV)[0][0]
             
+            # Check HSV ranges first
             h, s, v = hsv
             for color_name, (lower, upper) in self.hsv_color_ranges.items():
                 if (lower[0] <= h <= upper[0] and 
@@ -82,6 +93,7 @@ class ColorDetection:
                         'distance': 0
                     }
             
+            # Fallback to Lab color space comparison
             lab = bgr2lab(bgr)
             distances = []
             for color_name, color_bgr in self.cube_color_palette.items():
@@ -101,7 +113,13 @@ class ColorDetection:
             }
 
     def convert_bgr_to_notation(self, bgr):
-    
+        """
+        Convert BGR tuple to rubik's cube notation.
+        The BGR color must be normalized first by the get_closest_color method.
+
+        :param bgr tuple: The BGR values to convert.
+        :returns: str
+        """
         notations = {
             'green' : 'F',
             'white' : 'U',
@@ -114,6 +132,11 @@ class ColorDetection:
         return notations[color_name]
 
     def set_cube_color_pallete(self, palette):
+        """
+        Set a new cube color palette. The palette is being used when the user is
+        scanning his cube in solve mode by matching the scanned colors against
+        this palette.
+        """
         for side, bgr in palette.items():
             self.cube_color_palette[side] = tuple([int(c) for c in bgr])
 

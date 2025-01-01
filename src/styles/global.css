@@ -252,9 +252,18 @@ nav {
 /* Team Section */
 .team-section {
     padding: 4rem 5%;
-    height: 68vh;
+    height: 100vh;
 }
-
+.team-section h2{
+  display: flex;
+  justify-content: center;
+}
+.iot-section{
+  padding-top: 20px;
+}
+.microprocessor-section{
+  padding-top: 30px;
+}
 .team-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
